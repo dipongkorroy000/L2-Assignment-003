@@ -3,19 +3,15 @@ import { Book } from "../models/books.models";
 
 export const booksRoutes = express.Router();
 
-booksRoutes.post("/", async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const book = await req.body;
+booksRoutes.post("/", async (req: Request, res: Response) => {
+  const book = await req.body;
 
-    const result = await Book.create(book);
-    res.status(200).json({
-      success: true,
-      message: "Book created successfully",
-      data: result,
-    });
-  } catch (err) {
-    next(err);
-  }
+  const result = await Book.create(book);
+  res.status(200).json({
+    success: true,
+    message: "Book created successfully",
+    data: result,
+  });
 });
 
 booksRoutes.get("/", async (req: Request, res: Response) => {
