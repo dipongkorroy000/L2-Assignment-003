@@ -32,7 +32,7 @@ borrowRoutes.get("/", async (req: Request, res: Response) => {
   const result = await Borrow.aggregate([
     {
       $group: {
-        _id: { $toObjectId: "$book" },
+        _id: "$book" ,
         totalQuantity: { $sum: 1 },
       },
     },
